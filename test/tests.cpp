@@ -118,7 +118,7 @@ TEST(TimedDoorConstructor, ZeroTimeout) {
 
 TEST(IntegrationTest, FullSequenceNoException) {
   TimedDoor tDoor(1);
-  tDoor.lock(); 
+  tDoor.lock();
   DoorTimerAdapter adapter(tDoor);
   Timer timer;
   EXPECT_NO_THROW(timer.tregister(0, &adapter));
