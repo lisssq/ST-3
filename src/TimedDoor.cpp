@@ -3,15 +3,12 @@
 #include <unistd.h>
 #include <stdexcept>
 
-// DoorTimerAdapter
 DoorTimerAdapter::DoorTimerAdapter(TimedDoor& d) : door(d) {}
 
 void DoorTimerAdapter::Timeout() {
-  // Адаптер при срабатывании таймера просит дверь проверить состояние
   door.throwState();
 }
 
-// TimedDoor
 TimedDoor::TimedDoor(int timeout) : iTimeout(timeout), isOpened(false) {
   adapter = new DoorTimerAdapter(*this);
 }
@@ -38,7 +35,6 @@ void TimedDoor::throwState() {
   }
 }
 
-// Timer
 void Timer::tregister(int timeout, TimerClient* cl) {
   client = cl;
   sleep(timeout);
@@ -46,7 +42,4 @@ void Timer::tregister(int timeout, TimerClient* cl) {
 }
 
 void Timer::sleep(int timeout) {
-  // В учебных целях мы не будем реально засыпать на секунды в тестах,
-  // чтобы они не шли вечно, но структура метода такая:
-  // (Здесь можно было бы использовать usleep или std::this_thread::sleep_for)
 }
