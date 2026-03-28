@@ -80,7 +80,6 @@ TEST(IntegrationTest, FullSequenceException) {
   tDoor.unlock();
   DoorTimerAdapter adapter(tDoor);
   Timer timer;
-  
   EXPECT_THROW(timer.tregister(0, &adapter), std::runtime_error);
 }
 
@@ -104,12 +103,11 @@ TEST_F(TimedDoorTest, StateToggleConsistency) {
   EXPECT_TRUE(door->isDoorOpened());
 }
 
- TEST(AdapterTest, NoThrowIfClosedInTime) {
+TEST(AdapterTest, NoThrowIfClosedInTime) {
   TimedDoor tDoor(5);
   tDoor.unlock();
   tDoor.lock();
   DoorTimerAdapter adapter(tDoor);
-  
   EXPECT_NO_THROW(adapter.Timeout());
 }
 
@@ -123,6 +121,5 @@ TEST(IntegrationTest, FullSequenceNoException) {
   tDoor.lock(); 
   DoorTimerAdapter adapter(tDoor);
   Timer timer;
-
   EXPECT_NO_THROW(timer.tregister(0, &adapter));
 }
